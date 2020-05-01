@@ -3,8 +3,8 @@ body {
     background-image: url("images/bg-top.svg");
     text-align: center;
     margin: 0px;
+    overflow-x: hidden;
 }
-
 
 .darkBlue {
     color: hsl(232, 13%, 33%);
@@ -15,13 +15,6 @@ body {
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin: 1em;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
 }
 
 .slider {
@@ -32,8 +25,9 @@ body {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
 }
 
 .slider:before {
@@ -44,40 +38,29 @@ body {
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
 }
 
-input:checked+.slider {
+#price:checked+main .switch>.slider {
     background-color: hsl(236, 72%, 79%);
 }
 
-input:focus+.slider {
+#price:focus+main .switch>.slider {
     box-shadow: 0 0 1px hsl(236, 72%, 79%);
 }
 
-input:checked+.slider:before {
+#price:checked+main .switch>.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-.toggle {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 2em auto;
+#price {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .card {
@@ -88,7 +71,7 @@ input:checked+.slider:before {
 }
 
 .card-white {
-    background-color: white;
+    background-color: hsl(240, 78%, 98%);
     font-size: 1em;
     color: hsl(232, 13%, 33%);
 }
@@ -115,7 +98,7 @@ ul {
     border-bottom: solid 1px white;
 }
 
-.price {
+.priceBig {
     font-size: 3.5em;
     font-weight: 500;
 }
@@ -163,8 +146,9 @@ label .menu {
     transition: .5s ease-in-out;
     box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
     cursor: pointer;
-  }
-  label .hamburger {
+}
+
+label .hamburger {
     position: absolute;
     top: 135px;
     left: 50px;
@@ -173,11 +157,12 @@ label .menu {
     background: #FFF;
     display: block;
     -webkit-transform-origin: center;
-            transform-origin: center;
+    transform-origin: center;
     -webkit-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
-  }
-  label .hamburger:after, label .hamburger:before {
+}
+
+label .hamburger:after, label .hamburger:before {
     -webkit-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     content: "";
@@ -186,53 +171,87 @@ label .menu {
     width: 100%;
     height: 100%;
     background: #FFF;
-  }
-  label .hamburger:before {
+}
+
+label .hamburger:before {
     top: -10px;
-  }
-  label .hamburger:after {
+}
+
+label .hamburger:after {
     bottom: -10px;
-  }
-  label input {
+}
+
+label input {
     display: none;
-  }
-  label input:checked + .menu {
+}
+
+label input:checked+.menu {
     box-shadow: 0 0 0 100vw hsl(237, 63%, 64%), 0 0 0 100vh #FFF;
     border-radius: 0;
-  }
-  label input:checked + .menu .hamburger {
+}
+
+label input:checked+.menu .hamburger {
     -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-  }
-  label input:checked + .menu .hamburger:after {
+    transform: rotate(45deg);
+}
+
+label input:checked+.menu .hamburger:after {
     -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    transform: rotate(90deg);
     bottom: 0;
-  }
-  label input:checked + .menu .hamburger:before {
+}
+
+label input:checked+.menu .hamburger:before {
     -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    transform: rotate(90deg);
     top: 0;
-  }
-  label input:checked + .menu + ul {
+}
+
+label input:checked+.menu+ul {
     opacity: 1;
-  }
-  label ul {
+}
+
+label ul {
     z-index: 200;
     position: absolute;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     opacity: 0;
     -webkit-transition: .25s 0s ease-in-out;
     transition: .25s 0s ease-in-out;
-  }
-  label a {
+}
+
+label a {
     margin-bottom: 1em;
     display: block;
     color: #FFF;
     text-decoration: none;
-  }
+}
 
 /*Fin menu hamburguesa*/
+
+.toggle {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.toggle p {
+    padding: 10px;
+}
+
+.monthlyPrice {
+    display: none;
+}
+
+#price:checked~main .card>ul>.monthlyPrice {
+    display: block;
+}
+
+#price:checked~main .card>ul>.anualPrice {
+    display: none;
+}
